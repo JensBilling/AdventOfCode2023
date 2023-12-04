@@ -1,6 +1,6 @@
 ﻿namespace AdventOfCode2023.Day2;
 
-public class Day2Star1
+public static class Day2Star1
 {
     public static void Run()
     {
