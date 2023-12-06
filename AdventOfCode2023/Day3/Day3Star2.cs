@@ -96,9 +96,9 @@ class StarCell
     public string[,] DataMatrix { get; set; }
     public int Row { get; set; }
     public int Column { get; set; }
-    private bool[] rowAbove = new bool[3];
-    private bool[] rowSame = new bool[3];
-    private bool[] rowBelow = new bool[3];
+    private bool[] _rowAbove = new bool[3];
+    private bool[] _rowSame = new bool[3];
+    private bool[] _rowBelow = new bool[3];
     public int ProductOfNumbers { get; set; } = -1;
 
     public StarCell(string[,] dataMatrix, int row, int column)
@@ -113,45 +113,45 @@ class StarCell
 
     private void CheckSurroundingCellsForNumericCharacters()
     {
-        rowSame[1] = false;
+        _rowSame[1] = false;
         if (int.TryParse(DataMatrix[Row - 1, Column - 1], out _))
         {
-            rowAbove[0] = true;
+            _rowAbove[0] = true;
         }
 
         if (int.TryParse(DataMatrix[Row - 1, Column], out _))
         {
-            rowAbove[1] = true;
+            _rowAbove[1] = true;
         }
 
         if (int.TryParse(DataMatrix[Row - 1, Column + 1], out _))
         {
-            rowAbove[2] = true;
+            _rowAbove[2] = true;
         }
 
         if (int.TryParse(DataMatrix[Row, Column - 1], out _))
         {
-            rowSame[0] = true;
+            _rowSame[0] = true;
         }
 
         if (int.TryParse(DataMatrix[Row, Column + 1], out _))
         {
-            rowSame[2] = true;
+            _rowSame[2] = true;
         }
 
         if (int.TryParse(DataMatrix[Row + 1, Column - 1], out _))
         {
-            rowBelow[0] = true;
+            _rowBelow[0] = true;
         }
 
         if (int.TryParse(DataMatrix[Row + 1, Column], out _))
         {
-            rowBelow[1] = true;
+            _rowBelow[1] = true;
         }
 
         if (int.TryParse(DataMatrix[Row + 1, Column + 1], out _))
         {
-            rowBelow[2] = true;
+            _rowBelow[2] = true;
         }
     }
 
@@ -161,47 +161,47 @@ class StarCell
         int numberToLeft = 0;
         int numberToRight = 0;
         int separateNumbersBelow = 0;
-        if (!rowAbove[1])
+        if (!_rowAbove[1])
         {
-            if (rowAbove[0])
+            if (_rowAbove[0])
             {
                 separateNumbersAbove++;
             }
 
-            if (rowAbove[2])
+            if (_rowAbove[2])
             {
                 separateNumbersAbove++;
             }
         }
-        else if (rowAbove[0] || rowAbove[1] || rowAbove[2])
+        else if (_rowAbove[0] || _rowAbove[1] || _rowAbove[2])
         {
             separateNumbersAbove++;
         }
 
 
-        if (rowSame[0])
+        if (_rowSame[0])
         {
             numberToLeft++;
         }
 
-        if (rowSame[2])
+        if (_rowSame[2])
         {
             numberToRight++;
         }
 
-        if (!rowBelow[1])
+        if (!_rowBelow[1])
         {
-            if (rowBelow[0])
+            if (_rowBelow[0])
             {
                 separateNumbersBelow++;
             }
 
-            if (rowBelow[2])
+            if (_rowBelow[2])
             {
                 separateNumbersBelow++;
             }
         }
-        else if (rowBelow[0] || rowBelow[1] || rowBelow[2])
+        else if (_rowBelow[0] || _rowBelow[1] || _rowBelow[2])
         {
             separateNumbersBelow++;
         }
@@ -252,7 +252,7 @@ class StarCell
         }
         else if (separateNumbersAbove == 1)
         {
-            string foundNumber = "";
+            string foundNumber;
             if (int.TryParse(DataMatrix[Row - 1, Column - 1], out _))
             {
                 foundNumber = FindNumber(Row - 1, Column - 1);
@@ -316,7 +316,7 @@ class StarCell
         }
         else if (separateNumbersBelow == 1)
         {
-            string foundNumber = "";
+            string foundNumber;
             if (int.TryParse(DataMatrix[Row + 1, Column - 1], out _))
             {
                 foundNumber = FindNumber(Row + 1, Column - 1);

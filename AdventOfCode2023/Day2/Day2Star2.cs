@@ -27,7 +27,6 @@ public static class Day2Star2
         int requiredBlueCubes = 0;
 
         var splitGame = gameInput.Split(":");
-        int gameId = int.Parse(splitGame[0].Substring(5));
         var splitGames = splitGame[1].Trim().Replace(" ", "").Split(";");
         
         foreach (var currentGame in splitGames)
