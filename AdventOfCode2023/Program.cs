@@ -8,4 +8,5 @@
 // AdventOfCode2023.Day4.Day4Star2.Run();
 // AdventOfCode2023.Day5.Day5Star1.Run();
 // AdventOfCode2023.Day6.Day6Star1.Run();
-AdventOfCode2023.Day6.Day6Star2.Run();
+// AdventOfCode2023.Day6.Day6Star2.Run();
+AdventOfCode2023.Day7.Day7Star1.Run();
